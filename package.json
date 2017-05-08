@@ -1,0 +1,29 @@
+{
+  "name": "stoic-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-hot-loader": "^1.3.1",
+    "react-redux": "^4.0.4",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-react": "^6.24.1",
+    "react-hot-loader": "^1.3.1",
+    "webpack": "^2.5.0",
+    "webpack-dev-server": "^2.4.5"
+  }
+}
