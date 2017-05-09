@@ -28,13 +28,13 @@ module.exports = {
           }
        ]
     },
-	externals: {
-	  Config: JSON.stringify(process.env.ENV === 'production' ? {
-		apiUrl: "https://dankolbman.xyz"
-	  } : {
-		apiUrl: "http://localhost:5000"
-	  })
-	},
+		externals: {
+			Config: JSON.stringify(process.env.ENV === 'production' ? {
+			apiUrl: "https://dankolbman.xyz"
+			} : {
+			apiUrl: "http://localhost:5000"
+			})
+		},
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()

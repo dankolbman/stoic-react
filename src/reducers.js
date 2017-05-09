@@ -1,75 +1,21 @@
-import { combineReducers } from 'redux'
-import {
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
-  TRIP_REQUEST, TRIP_SUCCESS, TRIP_FAILURE
-} from './actions'
+import REQUEST_POINTS from './actions'
+const initialState = {
+  points: []
+}
 
-// The auth reducer. The starting state sets authentication
-// based on a token being in local storage. In a real app,
-// we would also want a util to check if the token is expired.
-function auth(state = {
-    isFetching: false,
-    isAuthenticated: localStorage.getItem('id_token') ? true : false
-  }, action) {
+function tripApp(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_REQUEST:
-      return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false,
-        user: action.creds
-      })
-    case LOGIN_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        isAuthenticated: true,
-        errorMessage: ''
-      })
-    case LOGIN_FAILURE:
-      return Object.assign({}, state, {
-        isFetching: false,
-        isAuthenticated: false,
-        errorMessage: action.message
-      })
-    case LOGOUT_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false
-      })
+    case REQUEST_POINTS:
+      return axios.get('https://jsonplaceholder.typicode.com/posts/1')
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
     default:
       return state
   }
 }
 
-function trips(state = {
-    isFetching: false,
-    trip: '',
-    authenticated: false
-  }, action) {
-  switch (action.type) {
-    case TRIP_REQUEST:
-      return Object.assign({}, state, {
-        isFetching: true
-      })
-    case TRIP_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        quote: action.response,
-        authenticated: action.authenticated || false
-      })
-    case TRIP_FAILURE:
-      return Object.assign({}, state, {
-        isFetching: false
-      })
-    default:
-      return state
-    }
-}
-
-// We combine the reducers here so that they
-// can be left split apart above
-const stoicApp = combineReducers({
-  auth,
-  trips
-})
-
-export default stoicApp
+export default tripApp
