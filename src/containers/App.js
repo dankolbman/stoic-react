@@ -1,33 +1,43 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 import { loginUser, fetchTrip} from '../actions'
 import Login from '../components/Login'
+import Register from '../components/Register'
 import Navbar from '../components/Navbar'
 import Trip from '../components/Trip'
+import Home from '../containers/Home'
 
-class App extends Component {
-  render() {
-    const { dispatch, trip, isAuthenticated, errorMessage } = this.props
-    return (
-      <div>
-        <Navbar
-          isAuthenticated={isAuthenticated}
-          errorMessage={errorMessage}
-          dispatch={dispatch}
-        />
-        <div className='container'>
-          <Trip
-            onTripClick={trip => dispatch(fetchTrip(trip))}
-            isAuthenticated={isAuthenticated}
-            trip={trip}
-          />
-        </div>
-      </div>
-    )
-  }
+class StoicApp extends Component {
+	render() {
+		const { dispatch, trip, isAuthenticated, errorMessage } = this.props
+		return (
+			<Router>
+				<div>
+					<Navbar
+						isAuthenticated={isAuthenticated}
+						errorMessage={errorMessage}
+						dispatch={dispatch}
+					/>
+					<section className="section">
+						<div className="container">
+							<div className="columns">
+								<Route exact path="/" component={Home}/>
+								<Route path="/register" component={Register}/>
+							</div>
+						</div>
+					</section>
+				</div>
+			</Router>
+		)
+	}
 }
 
-App.propTypes = {
+StoicApp.propTypes = {
   dispatch: PropTypes.func.isRequired,
   trip: PropTypes.string,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -48,4 +58,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(StoicApp)

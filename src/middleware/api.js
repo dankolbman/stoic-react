@@ -20,6 +20,7 @@ function callApi(endpoint, authenticated) {
     .then(response =>
       response.text().then(text => ({ text, response }))
     ).then(({ text, response }) => {
+      console.log(text)
       if (!response.ok) {
         return Promise.reject(text)
       }

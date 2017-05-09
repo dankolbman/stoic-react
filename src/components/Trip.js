@@ -3,11 +3,10 @@ import React, { Component, PropTypes } from 'react'
 export default class Trip extends Component {
 
   render() {
-    const { onTripClick, isAuthenticated, trip } = this.props
-
+    const { dispatch, isAuthenticated, errorMessage } = this.props
     return (
       <div>
-          <a onClick={onTripClick} className="button">
+          <a type="button" onClick={(event) => this.handleClick(event)} className="button is-primary is-small">
             Get Trip
           </a>
 
@@ -29,10 +28,14 @@ export default class Trip extends Component {
       </div>
     )
   }
+
+  handleClick(event) {
+    this.props.onTripClick()
+  }
 }
 
 Trip.propTypes = {
-  onTripClick: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  trip: PropTypes.string,
+  errorMessage: PropTypes.string
 }

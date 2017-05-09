@@ -14,6 +14,9 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const TRIP_REQUEST = 'TRIP_REQUEST'
 export const TRIP_SUCCESS = 'TRIP_SUCCESS'
 export const TRIP_FAILURE = 'TRIP_FAILURE'
+export const POINTS_REQUEST = 'POINTS_REQUEST'
+export const POINTS_SUCCESS = 'POINTS_SUCCESS'
+export const POINTS_FAILURE = 'POINTS_FAILURE'
 
 var Config = require('Config')
 
@@ -91,6 +94,16 @@ export function fetchTrip() {
       endpoint: '/points/',
       authenticated: true,
       types: [TRIP_REQUEST, TRIP_SUCCESS, TRIP_FAILURE]
+    }
+  }
+}
+
+export function fetchPoints() {
+  return {
+    [CALL_API]: {
+      endpoint: '/points/dan/trip1',
+      authenticated: false,
+      types: [POINT_REQUEST, POINT_SUCCESS, POINT_FAILURE]
     }
   }
 }
