@@ -2,20 +2,20 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import App from './containers/App'
-import quotesApp from './reducers'
 import thunkMiddleware from 'redux-thunk'
-import api from './middleware/api'
+import tripApp from './reducers'
+import { fetchPoints } from './actions'
+import App from './components/App'
 
-let createStoreWithMiddleware = applyMiddleware(thunkMiddleware, api)(createStore)
+const store = createStore(tripApp, applyMiddleware(thunkMiddleware))
 
-let store = createStoreWithMiddleware(quotesApp)
-
-let rootElement = document.getElementById('app')
+store.dispatch(fetchPoints('reactjs')).then(() =>
+  console.log(store.getState())
+)
 
 render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    rootElement
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
 )

@@ -1,38 +1,12 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 
-export default class Trip extends Component {
-
-  render() {
-    const { onTripClick, isAuthenticated, trip } = this.props
-
-    return (
-      <div>
-          <a onClick={onTripClick} className="button">
-            Get Trip
-          </a>
-
-          { trip &&
-            <div>
-              <blocktrip>{trip}</blocktrip>
-            </div>
-          }
-
-          { trip && isAuthenticated &&
-            <div>
-              <span className="label label-danger">Secret Trip</span>
-              <hr/>
-              <blocktrip>
-                {trip}
-              </blocktrip>
-            </div>
-          }
-      </div>
-    )
-  }
-}
+const Trip = ({ onClick, name }) => (
+  <a onClick={onClick} > {name} </a>
+)
 
 Trip.propTypes = {
-  onTripClick: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  trip: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 }
+
+export default Trip
