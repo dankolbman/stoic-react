@@ -20,15 +20,13 @@ export function fetchPoints(trip) {
   return function (dispatch) {
 
     dispatch(requestPoints(trip))
-    return axios.get(Config.apiUrl + '/points/Dan/trip1?size=1000')
-              .then(function (response) {
-                console.log(response);
-								dispatch(receivePoints(trip, response))
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
-
+    return axios.get(Config.apiUrl + '/lines/Dan/chi-phl?size=1000')
+                .then(response => {
+                  dispatch(receivePoints(trip, response.data.lines[0]))
+                })
+                .catch((error) => {
+                  console.log(error);
+                })
   }
 }
 

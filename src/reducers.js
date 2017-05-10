@@ -1,18 +1,22 @@
-import REQUEST_POINTS from './actions'
+import { REQUEST_POINTS, RECEIVE_POINTS } from './actions'
 const initialState = {
-  points: []
+  trip: 'chi-phl',
+  points: {},
+  isFetching: true
 }
 
 function tripApp(state = initialState, action) {
   switch (action.type) {
     case REQUEST_POINTS:
-      return axios.get('https://jsonplaceholder.typicode.com/posts/1')
-              .then(function (response) {
-                console.log(response);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case RECEIVE_POINTS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        trip: action.trip,
+        points: action.points
+      })
     default:
       return state
   }

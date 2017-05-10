@@ -9,13 +9,13 @@ import App from './components/App'
 
 const store = createStore(tripApp, applyMiddleware(thunkMiddleware))
 
-store.dispatch(fetchPoints('reactjs')).then(() =>
+store.dispatch(fetchPoints('trip1')).then(() =>
   console.log(store.getState())
 )
 
 render(
   <Provider store={store}>
-    <App />
+    <App trip={'trip1'}/>
   </Provider>,
   document.getElementById('app')
 )
