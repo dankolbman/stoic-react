@@ -10,18 +10,11 @@ class Logout extends Component {
     const { onLogoutClick } = this.props
 
     return (
-    <div className="field is-horizontal">
-        <div className="field">
-          <div className="control">
-            <button type="submit" onClick={() => this.onLogoutClick()} className="button is-primary is-small">
-                Logout
-            </button>
-          </div>
-        </div>
-      </div>
+      <a onClick={() => onLogoutClick()} className="nav-item is-tab">
+          Logout
+      </a>
     )
   }
-
 }
 
 Logout.propTypes = {
