@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Login from '../components/Login.js'
 import Logout from '../components/Logout.js'
+import { loginUser, logoutUser } from '../actions/auth'
 
 
 class Navbar extends Component {
@@ -11,8 +12,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { dispatch } = this.props
-		const isAuthenticated = true
+    const { dispatch, username, isAuthenticated, errorMessage } = this.props
 
     return (
 		<div>
@@ -23,7 +23,7 @@ class Navbar extends Component {
             <img src="./static/stoic_black.png" alt="Stoic logo" />
           </Link>
         </div>
-        <div className="nav-right">
+        <div className="nav-right nav-menu">
           {!isAuthenticated &&
             <div className="nav-item">
               <Link to="/register" className="button is-info is-small">Sign-Up</Link>
@@ -33,27 +33,22 @@ class Navbar extends Component {
             <div className="nav-item">
             <Login
               onLoginClick={ creds => dispatch(loginUser(creds)) }
+							errorMessage={errorMessage}
             />
             </div>
           }
           {isAuthenticated &&
-            <div className="nav-item">
-							<div className="field is-horizontal">
-								<div className="field">
-									<div className="control">
-										<Link to='/user/Dan' className="">
-												Dan
-										</Link>
-									</div>
-								</div>
-							</div>
-						</div>
+					<Link to={"/user/"+username} className="nav-item is-tab">
+						{username}
+						<figure className="image is-24x24" style={{marginLeft: "8px"}}>
+							<img src="http://bulma.io/images/jgthms.png"/>
+						</figure>
+					</Link>
 					}
           {isAuthenticated &&
-            <div className="nav-item">
-            <Logout onLogoutClick={() => dispatch(logoutUser())} />
-            </div>
+						<Logout onLogoutClick={() => dispatch(logoutUser())} />
           }
+
         </div>
 			</div>
     </nav>
@@ -63,7 +58,10 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
+  username: PropTypes.string
 }
 
 function mapStateToProps(state) {

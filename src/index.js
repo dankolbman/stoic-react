@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
 import tripApp from './reducers'
-import { fetchPoints } from './actions'
+import { fetchPoints } from './actions/points'
 import App from './components/App'
 
 import './stoic.sass'

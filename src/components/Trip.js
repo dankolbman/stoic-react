@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJSON } from 'react-leaflet'
-import { fetchPoints } from '../actions'
+import { fetchPoints } from '../actions/points'
 
 class Trip extends Component {
   constructor(props) {

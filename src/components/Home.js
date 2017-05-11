@@ -10,7 +10,7 @@ class Home extends Component {
 
     return (
     <section>
-      <div className='hero is-primary'>
+      <div className='hero is-info'>
         <div className="hero-body">
           <div className='container'>
             <div className='columns'>

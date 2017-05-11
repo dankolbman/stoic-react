@@ -20,10 +20,17 @@ class App extends Component {
   }
 
 	render() {
+    const { dispatch, username, isAuthenticated, errorMessage} = this.props
+		console.log(isAuthenticated)
 		return (
       <Router history={hashHistory}>
         <div>
-          <Navbar />
+          <Navbar
+						isAuthenticated={isAuthenticated}
+						errorMessage={errorMessage}
+            username={username}
+						dispatch={dispatch}
+          />
 					<Route exact path="/" component={Home}/>
 					<Route path="/register" component={Register}/>
 					<Route exact path="/user/:id" component={User}/>
@@ -38,8 +45,15 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
-  return {
-  }
+	const { auth } = state
+	const { username, isAuthenticated, errorMessage } = auth
+
+  console.log(username)
+	return {
+    username,
+		isAuthenticated,
+		errorMessage
+	}
 }
 
 export default connect(mapStateToProps)(App)
