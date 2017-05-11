@@ -7,6 +7,8 @@ import tripApp from './reducers'
 import { fetchPoints } from './actions'
 import App from './components/App'
 
+import './stoic.sass'
+
 const store = createStore(tripApp, applyMiddleware(thunkMiddleware))
 
 render(
