@@ -1,6 +1,6 @@
 import { REQUEST_POINTS, RECEIVE_POINTS } from './actions'
 const initialState = {
-  trip: 'chi-phl',
+  center: [0.0, 0.0],
   points: {},
   isFetching: true
 }
@@ -13,9 +13,9 @@ function tripApp(state = initialState, action) {
       })
     case RECEIVE_POINTS:
       return Object.assign({}, state, {
-        isFetching: false,
-        trip: action.trip,
-        points: action.points
+        points: action.points,
+        center: action.center,
+        isFetching: false
       })
     default:
       return state
