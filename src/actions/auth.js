@@ -36,7 +36,7 @@ export function loginUser(creds) {
   
   let config = {
     method: 'POST',
-		url: 'http://localhost:5000/auth',
+		url: `${Config.apiUrl}/users/auth`,
     data: {username: creds.username, password: creds.password}
   }
   
@@ -76,12 +76,53 @@ function receiveLogout() {
 
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
 
-// Logs the user out
-export function logoutUser() {
-  return dispatch => {
-    dispatch(requestLogout())
-    localStorage.removeItem('id_token')
-    dispatch(receiveLogout())
+// Register a new user
+export const REGISTER_REQUEST = 'REGISTER_REQUEST'
+function requestRegister() {
+    return {
+      type: REGISTER_REQUEST,
+      isFetching: true
   }
 }
 
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+function receiveRegister() {
+    return {
+      type: REGISTER_SUCCESS,
+      isFetching: false
+  }
+}
+
+export const REGISTER_FAILURE = 'REGISTER_FAILURE'
+function registerFail(message) {
+    return {
+      type: REGISTER_FAILURE,
+      isFetching: false,
+      message
+  }
+}
+
+export function registerUser(creds) {
+  
+  let config = {
+    method: 'POST',
+		url: `${Config.apiUrl}/users/user/`,
+    data: {username: creds.username,
+           email: creds.email,
+           password: creds.password}
+  }
+  
+  return dispatch => {
+    // We dispatch requestLogin to kickoff the call to the API
+    dispatch(requestLogin(creds))
+    return axios(config)
+                .then(response => {
+									dispatch(registerSuccess(creds.username))
+                })
+                .catch((error) => {
+									if (error.response) {
+										dispatch(registerFail(error.response.data.status))
+									}
+                })
+  }
+}

@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { LOGIN_REQUEST, LOGIN_FAILURE, LOGIN_SUCCESS,
-				 LOGOUT_REQUEST, LOGOUT_FAILURE, LOGOUT_SUCCESS } from './actions/auth'
+				 LOGOUT_REQUEST, LOGOUT_FAILURE, LOGOUT_SUCCESS,
+         REGISTER_REQUEST, REGISTER_FAILURE, REGISTER_SUCCESS } from './actions/auth'
 import { REQUEST_POINTS, RECEIVE_POINTS } from './actions/points'
 
 const initialState = {
@@ -37,6 +38,21 @@ function auth(state = {
       return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: false
+      })
+    case REGISTER_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case REGISTER_FAILURE:
+      console.log(action.message)
+      return Object.assign({}, state, {
+        isFetching: false,
+        errorMessage: action.message
+      })
+    case REGISTER_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        errorMessage: ''
       })
     default:
       return state
