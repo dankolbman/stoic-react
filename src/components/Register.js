@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
+import { registerUser } from '../actions/auth'
+
 class Register extends Component {
   constructor(props) {
     super(props)
@@ -15,16 +17,19 @@ class Register extends Component {
       <div className="field">
         <label className="label">Username</label>
         <p className="control has-icons-left">
-          <input ref="username" className="input" type="text" placeholder="Username" />
+          <input ref="username" className={"input " + (errorMessage ? " is-danger" : "")} type="text" placeholder="Username" />
           <span className="icon is-small is-left">
             <i className="fa fa-user"></i>
           </span>
+          {errorMessage && errorMessage.includes('username') &&
+            <p className="help is-danger">This username is taken</p>
+          }
         </p>
       </div>
       <div className="field">
         <label className="label">Email</label>
         <p className="control has-icons-left">
-          <input ref="email" className="input" type="text" placeholder="Email" />
+          <input ref="email" className={"input " + (errorMessage ? " is-danger" : "")} type="text" placeholder="Email" />
           <span className="icon is-small is-left">
             <i className="fa fa-envelope"></i>
           </span>
@@ -40,9 +45,6 @@ class Register extends Component {
               Sign-Up
           </button>
         </p>
-        {errorMessage &&
-          <p>{errorMessage}</p>
-        }
       </div>
     </div>
     )
@@ -55,11 +57,20 @@ class Register extends Component {
     const creds = { username: username.value.trim(),
                     email: email.value.trim(),
                     password: password.value.trim() }
-    this.props.onRegisterClick(creds)
+    this.props.dispatch(registerUser(creds))
   }
 }
 
 Register.propTypes = {
+  errorMessage: PropTypes.string
 }
 
-export default Register
+function mapStateToProps(state) {
+  const { auth } = state
+  const { errorMessage } = auth
+  return {
+    errorMessage
+  }
+}
+
+export default connect(mapStateToProps)(Register)
