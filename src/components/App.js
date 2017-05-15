@@ -11,6 +11,7 @@ import Home from '../components/Home'
 import Navbar from '../components/Navbar'
 import Register from '../components/Register'
 import Trip from '../components/Trip'
+import NewTrip from '../components/NewTrip'
 import User from '../components/User'
 
 
@@ -35,6 +36,7 @@ class App extends Component {
             render={props=><Register dispatch={dispatch} {...props} />}
           />
 					<Route exact path="/user/:id" component={User}/>
+					<Route exact path="/user/:id/new" component={NewTrip}/>
         </div>
       </Router>
 		)
