@@ -22,6 +22,11 @@ class Navbar extends Component {
           <Link to="/" className="nav-item">
             <img src="./static/stoic_black.png" alt="Stoic logo" />
           </Link>
+          {isAuthenticated &&
+					<Link to={"/user/"+username+"/new"} className="nav-item is-tab">
+						Embark!
+					</Link>
+					}
         </div>
         <div className="nav-right nav-menu">
           {!isAuthenticated &&
@@ -37,7 +42,7 @@ class Navbar extends Component {
             />
             </div>
           }
-          {isAuthenticated &&
+          {(isAuthenticated && username) &&
 					<Link to={"/user/"+username} className="nav-item is-tab">
 						{username}
 						<figure className="image is-24x24" style={{marginLeft: "8px"}}>
