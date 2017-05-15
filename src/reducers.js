@@ -2,13 +2,8 @@ import { combineReducers } from 'redux'
 import { LOGIN_REQUEST, LOGIN_FAILURE, LOGIN_SUCCESS,
 				 LOGOUT_REQUEST, LOGOUT_FAILURE, LOGOUT_SUCCESS,
          REGISTER_REQUEST, REGISTER_FAILURE, REGISTER_SUCCESS } from './actions/auth'
-import { REQUEST_POINTS, RECEIVE_POINTS } from './actions/points'
+import { REQUEST_POINTS, RECEIVE_POINTS, POINTS_FAILURE } from './actions/points'
 
-const initialState = {
-  center: [0.0, 0.0],
-  points: {},
-  isFetching: true
-}
 
 function auth(state = {
     isFetching: false,
@@ -45,7 +40,6 @@ function auth(state = {
         isFetching: true
       })
     case REGISTER_FAILURE:
-      console.log(action.message)
       return Object.assign({}, state, {
         isFetching: false,
         errorMessage: action.message
@@ -60,6 +54,11 @@ function auth(state = {
     }
 }
 
+const initialState = {
+  center: [0.0, 0.0],
+  points: {},
+  isFetching: true
+}
 
 function trip(state = initialState, action) {
   switch (action.type) {
@@ -68,9 +67,11 @@ function trip(state = initialState, action) {
         isFetching: true
       })
     case RECEIVE_POINTS:
+      console.log('action')
+      console.log(action)
       return Object.assign({}, state, {
-        points: action.points,
-        center: action.center,
+        points: {},
+        center: [0,0],
         isFetching: false
       })
     default:
