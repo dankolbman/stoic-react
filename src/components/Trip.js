@@ -16,12 +16,24 @@ class Trip extends Component {
 	render() {
     const { center, points, isFetching } = this.props
 		if (isFetching) return (
-      <div className='hero is-primary' style={{width: '100%', height: '300px'}}>
+      <div className='hero is-info' style={{width: '100%', height: '300px'}}>
         <div className='container'>
-          <div className='button is-primary is-loading' style={{width: '100%', height: '270px'}}></div>
+          <div className='button is-infois-loading' style={{width: '100%', height: '270px'}}></div>
           <h3>Loading the trip map, hold tight...</h3>
         </div>
-      </div>)
+      </div>
+    )
+    if (this.props.points) return (
+      <div className='hero is-info' style={{width: '100%', height: '150'}}>
+        <div className='container'>
+          <div className='hero-body' style={{width: '100%', height: '150px'}}>
+            <h1 className='title'>No trip data yet</h1>
+            <h2 className='subtitle'>Go upload some now!</h2>
+          </div>
+        </div>
+      </div>
+    )
+
 		return (
       <div>
 				<Map
@@ -65,9 +77,14 @@ Trip.propTypes = {
 }
 
 function mapStateToProps(state) {
-	const { center, points, isFetching } = state
+  const { auth, trip } = state
+	const { center, points, isFetching } = trip
+  const { username, isAuthenticated } = auth
+  console.log('state')
+  console.log(state)
 
   return {
+    username,
     center,
     points,
     isFetching

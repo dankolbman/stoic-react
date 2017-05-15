@@ -76,6 +76,13 @@ function receiveLogout() {
 }
 
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
+function logoutFail() {
+    return {
+      type: LOGOUT_FAILURE,
+      isFetching: false,
+      isAuthenticated: false
+  }
+}
 
 export function logoutUser() {
   return dispatch => {
