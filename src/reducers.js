@@ -12,7 +12,8 @@ const initialState = {
 
 function auth(state = {
     isFetching: false,
-    isAuthenticated: localStorage.getItem('id_token') ? true : false
+    isAuthenticated: localStorage.getItem('id_token') ? true : false,
+    username: localStorage.getItem('username') || ''
   }, action) {
   switch (action.type) {
     case LOGIN_REQUEST:
