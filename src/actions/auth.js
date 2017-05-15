@@ -46,6 +46,7 @@ export function loginUser(creds) {
     return axios(config)
                 .then(response => {
 									localStorage.setItem('id_token', response.data.access_token)
+									localStorage.setItem('username', creds.username)
 									dispatch(loginSuccess(creds.username, response.data.access_token))
                 })
                 .catch((error) => {
@@ -75,6 +76,15 @@ function receiveLogout() {
 }
 
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
+
+export function logoutUser() {
+  return dispatch => {
+    dispatch(requestLogout())
+    localStorage.removeItem('id_token')
+    localStorage.removeItem('username')
+    dispatch(receiveLogout())
+  }
+}
 
 // Register a new user
 export const REGISTER_REQUEST = 'REGISTER_REQUEST'
