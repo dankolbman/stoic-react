@@ -24,7 +24,7 @@ class Trip extends Component {
       </div>
     )
     if (this.props.points) return (
-      <div className='hero is-info' style={{width: '100%', height: '150'}}>
+      <div className='hero is-info' style={{width: '100%', height: '150px'}}>
         <div className='container'>
           <div className='hero-body' style={{width: '100%', height: '150px'}}>
             <h1 className='title'>No trip data yet</h1>
@@ -80,8 +80,6 @@ function mapStateToProps(state) {
   const { auth, trip } = state
 	const { center, points, isFetching } = trip
   const { username, isAuthenticated } = auth
-  console.log('state')
-  console.log(state)
 
   return {
     username,

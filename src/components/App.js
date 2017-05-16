@@ -6,7 +6,7 @@ import {
     RouteHandler,
     Link
 } from 'react-router-dom'
-import {browserHistory, hashHistory} from 'react-router'; 
+import {browserHistory} from 'react-router'; 
 import Home from '../components/Home'
 import Navbar from '../components/Navbar'
 import Register from '../components/Register'
@@ -22,7 +22,7 @@ class App extends Component {
 	render() {
     const { dispatch, username, isAuthenticated, errorMessage} = this.props
 		return (
-      <Router history={hashHistory}>
+      <Router history={browserHistory}>
         <div>
           <Navbar
 						isAuthenticated={isAuthenticated}

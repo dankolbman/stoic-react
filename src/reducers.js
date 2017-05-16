@@ -67,8 +67,6 @@ function trip(state = initialState, action) {
         isFetching: true
       })
     case RECEIVE_POINTS:
-      console.log('action')
-      console.log(action)
       return Object.assign({}, state, {
         points: {},
         center: [0,0],
