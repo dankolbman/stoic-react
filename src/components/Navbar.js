@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import Login from '../components/Login.js'
 import Logout from '../components/Logout.js'
 import { loginUser, logoutUser } from '../actions/auth'

@@ -5,8 +5,8 @@ import {
     Route,
     RouteHandler,
     Link
-} from 'react-router-dom'
-import {browserHistory, hashHistory} from 'react-router'; 
+} from 'react-router'
+
 import Home from '../components/Home'
 import Navbar from '../components/Navbar'
 import Register from '../components/Register'
@@ -23,22 +23,23 @@ class App extends Component {
 	render() {
     const { dispatch, username, isAuthenticated, errorMessage} = this.props
 		return (
-      <Router history={hashHistory}>
-        <div>
+      <div>
+        <Router>
           <Navbar
-						isAuthenticated={isAuthenticated}
-						errorMessage={errorMessage}
+            isAuthenticated={isAuthenticated}
+            errorMessage={errorMessage}
             username={username}
-						dispatch={dispatch}
+            dispatch={dispatch}
           />
-					<Route exact path="/" component={Home}/>
-					<Route path="/register"
-            render={props=><Register dispatch={dispatch} {...props} />}
+          <Route path="register"
+            render={props=><Register dispatch={store.dispatch} {...props} />}
           />
-					<Route exact path="/user/:id" component={User}/>
-					<Route exact path="/user/:id/new" component={NewTrip}/>
-        </div>
-      </Router>
+          <Route exact path="/user/:id" component={User}/>
+          <Route path="/user/:id/new"
+            render={props=><NewTrip dispatch={store.dispatch} {...props} />}
+          />
+        </Router>
+      </div>
 		)
 	}
 }
@@ -48,7 +49,9 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
-	const { auth } = state
+  console.log(state)
+  const { app, routing } = state
+	const { auth } = app
 	const { username, isAuthenticated, errorMessage } = auth
 
 	return {
