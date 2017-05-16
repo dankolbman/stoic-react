@@ -38,8 +38,15 @@ class App extends Component {
           <Route path="/user/:id/new"
             render={props=><NewTrip dispatch={store.dispatch} {...props} />}
           />
+<<<<<<< HEAD
         </Router>
       </div>
+=======
+					<Route exact path="/user/:id" component={User}/>
+					<Route exact path="/user/:id/new" component={NewTrip}/>
+        </div>
+      </Router>
+>>>>>>> fc0b61f3eb68c685a411b837fa89287e68fac468
 		)
 	}
 }
