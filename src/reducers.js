@@ -32,7 +32,7 @@ function auth(state = {
       })
     case LOGOUT_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: true,
+        isFetching: false,
         isAuthenticated: false
       })
     case REGISTER_REQUEST:

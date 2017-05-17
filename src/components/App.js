@@ -1,16 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import {
-    BrowserRouter as Router,
-    Route,
-    RouteHandler,
-    Link
-} from 'react-router-dom'
-import {browserHistory} from 'react-router'; 
+import { Route } from 'react-router-dom'
 import Home from '../components/Home'
 import Navbar from '../components/Navbar'
 import Register from '../components/Register'
 import Trip from '../components/Trip'
+import NewTrip from '../components/NewTrip'
 import User from '../components/User'
 
 
@@ -22,7 +17,6 @@ class App extends Component {
 	render() {
     const { dispatch, username, isAuthenticated, errorMessage} = this.props
 		return (
-      <Router history={browserHistory}>
         <div>
           <Navbar
 						isAuthenticated={isAuthenticated}
@@ -35,8 +29,8 @@ class App extends Component {
             render={props=><Register dispatch={dispatch} {...props} />}
           />
 					<Route exact path="/user/:id" component={User}/>
+					<Route path="/user/:id/new" component={NewTrip}/>
         </div>
-      </Router>
 		)
 	}
 }
@@ -46,6 +40,7 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
 	const { auth } = state
 	const { username, isAuthenticated, errorMessage } = auth
 

@@ -7,7 +7,7 @@ export default store => next => action => {
   if (callApi) {
     // Inject the Authorization header from localStorage.
     callApi.headers = Object.assign({}, callApi.headers, {
-      Authorization: localStorage.getItem('id_token') || '',
+      Authorization: `JWT ${localStorage.getItem('id_token')}` || '',
     })
   }
 
