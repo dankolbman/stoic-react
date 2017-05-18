@@ -4,7 +4,7 @@ import { Map, TileLayer, GeoJSON } from 'react-leaflet'
 import { fetchPoints } from '../actions/points'
 import { fetchTrip } from '../actions/trips'
 
-class Trip extends Component {
+class TripMap extends Component {
   constructor(props) {
     super(props)
   }
@@ -22,7 +22,7 @@ class Trip extends Component {
 		if (isFetching) return (
       <div className='hero is-info' style={{width: '100%', height: '300px'}}>
         <div className='container'>
-          <div className='button is-infois-loading' style={{width: '100%', height: '270px'}}></div>
+          <div className='button is-info is-loading' style={{width: '100%', height: '270px'}}></div>
           <h3>Loading the trip map, hold tight...</h3>
         </div>
       </div>

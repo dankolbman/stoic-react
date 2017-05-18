@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Trip from '../components/Trip'
+import Trips from '../components/Trips'
 
 class User extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class User extends Component {
 
     return (
     <div>
-      <Trip username={this.props.match.params.id} />
+      <Trips username={this.props.match.params.id} />
     </div>
     )
   }
