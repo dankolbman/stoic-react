@@ -24,13 +24,13 @@ class App extends Component {
             username={username}
 						dispatch={dispatch}
           />
-					<Route exact path="/" component={Home}/>
-					<Route path="/register"
+          <Route exact path="/" component={Home}/>
+          <Route path="/register"
             render={props=><Register dispatch={dispatch} {...props} />}
           />
-					<Route exact path="/user/:id" component={Profile}/>
-					<Route path="/user/:id/new" component={NewTrip}/>
-					<Route path="/trip/:username/:trip" component={Trips}/>
+          <Route exact path="/user/:id" component={Profile}/>
+          <Route path="/user/:id/new" component={NewTrip}/>
+          <Route path="/trip/:username/:trip" component={Trips}/>
         </div>
 		)
 	}
@@ -41,7 +41,6 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
 	const { auth } = state
 	const { username, isAuthenticated, errorMessage } = auth
 

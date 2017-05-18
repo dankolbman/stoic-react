@@ -16,7 +16,6 @@ function trips(state = initialState, action) {
     case RECEIVE_TRIPS:
       return Object.assign({}, state, {
         user_trips: action.payload.user_trips,
-        username: action.payload.username,
         isFetching: false
       })
     default:

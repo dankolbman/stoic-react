@@ -27,10 +27,12 @@ class Trips extends Component {
     )
 
 		return (
-      <div>
-        {user_trips.map(function(trip, i){
-          return <TripSummary title={trip.title} key={i}/>
-        })}
+      <div className="section is-fluid">
+        <div className="tile is-ancestor">
+          {user_trips.map(function(trip, i){
+            return <TripSummary {...trip} key={i}/>
+          })}
+        </div>
       </div>
 		)
 	}
@@ -43,9 +45,6 @@ Trips.propTypes = {
 }
 
 function mapStateToProps(state) {
-  console.log('Trips state')
-  console.log(state)
-
   const { auth, trips } = state
 	const { user_trips, isFetching } = trips
   return {

@@ -12,6 +12,7 @@ class NewTrip extends Component {
 
   render() {
     const { isFetching, errorMessage } = this.props
+    console.log('holl')
 
     return (
     <div className="column is-half is-offset-one-quarter">
