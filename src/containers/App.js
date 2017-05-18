@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
-import Home from '../components/Home'
 import Navbar from '../components/Navbar'
-import Register from '../components/Register'
-import Trips from '../components/Trips'
-import NewTrip from '../components/NewTrip'
-import Profile from '../components/Profile'
+import Home from '../containers/Home'
+import Register from '../containers/Register'
+import Trip from '../containers/Trip'
+import NewTrip from '../containers/NewTrip'
+import Profile from '../containers/Profile'
 
 
 class App extends Component {
@@ -30,7 +30,7 @@ class App extends Component {
           />
           <Route exact path="/user/:id" component={Profile}/>
           <Route path="/user/:id/new" component={NewTrip}/>
-          <Route path="/trip/:username/:trip" component={Trips}/>
+          <Route path="/trip/:username/:trip" component={Trip}/>
         </div>
 		)
 	}

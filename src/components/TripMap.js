@@ -71,7 +71,7 @@ class TripMap extends Component {
 	}
 }
 
-Trip.propTypes = {
+TripMap.propTypes = {
 	username: PropTypes.string.isRequired,
 	trip: PropTypes.string.isRequired,
   center: PropTypes.array.isRequired,
@@ -93,4 +93,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Trip)
+export default connect(mapStateToProps)(TripMap)
