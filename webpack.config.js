@@ -8,7 +8,8 @@ module.exports = {
     devServer: {
 			contentBase: resolve(__dirname, 'public'),
       hot: true,
-			publicPath: '/'
+			publicPath: '/',
+      historyApiFallback: true
     },
 		entry: [
 			'react-hot-loader/patch',

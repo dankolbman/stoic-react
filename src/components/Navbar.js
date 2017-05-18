@@ -20,7 +20,7 @@ class Navbar extends Component {
 			<div className="container">
         <div className="nav-left">
           <Link to="/" className="nav-item">
-            <img src="./static/stoic_black.png" alt="Stoic logo" />
+            <img src="/static/stoic_black.png" alt="Stoic logo" />
           </Link>
 					{isAuthenticated &&
 					<Link to={"/user/"+username+"/new"} className="nav-item is-tab">
