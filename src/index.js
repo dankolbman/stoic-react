@@ -12,7 +12,7 @@ import {
 import thunkMiddleware from 'redux-thunk'
 import { apiMiddleware } from 'redux-api-middleware'
 import authMiddleware from './middleware/auth'
-import tripApp from './reducers'
+import tripApp from './reducers/app'
 import { fetchPoints } from './actions/points'
 import App from './components/App'
 

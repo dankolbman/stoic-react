@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { fetchTrips } from '../actions/trips'
+import TripSummary from '../components/TripSummary'
 
 class Trips extends Component {
   constructor(props) {
@@ -9,13 +10,13 @@ class Trips extends Component {
 
 	componentWillMount() {
     const { dispatch, isFetching } = this.props
-    const { username } = this.props.match.params
+    const { username } = this.props
     dispatch(fetchTrips(username))
   }
 
 	render() {
-    const { username } = this.props.match.params
-    const { isFetching } = this.props
+    const { username } = this.props
+    const { user_trips, isFetching } = this.props
 		if (isFetching) return (
       <div className='hero is-info' style={{width: '100%', height: '300px'}}>
         <div className='container'>
@@ -27,7 +28,9 @@ class Trips extends Component {
 
 		return (
       <div>
-        Trips go here!
+        {user_trips.map(function(trip, i){
+          return <TripSummary title={trip.title} key={i}/>
+        })}
       </div>
 		)
 	}
@@ -40,8 +43,14 @@ Trips.propTypes = {
 }
 
 function mapStateToProps(state) {
+  console.log('Trips state')
+  console.log(state)
 
+  const { auth, trips } = state
+	const { user_trips, isFetching } = trips
   return {
+    user_trips,
+    isFetching
   }
 }
 

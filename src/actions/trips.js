@@ -90,7 +90,7 @@ export function fetchTrips(username) {
         type: RECEIVE_TRIPS,
         payload: (action, state, res) => {
 					return getJSON(res).then(
-              (json) => receiveTrip(username, trip, json)
+              (json) => receiveTrips(username, json)
           )
         }
       }, TRIP_FAILURE]
@@ -99,10 +99,11 @@ export function fetchTrips(username) {
 }
 
 export const RECEIVE_TRIPS = 'RECEIVE_TRIPS'
-function receiveTrips(username, trip, json) {
+function receiveTrips(username, json) {
   return {
     type: RECEIVE_TRIPS,
-    trips: json.trips
+    username: username,
+    user_trips: json.trips
   }
 }
 
