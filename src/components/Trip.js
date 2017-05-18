@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJSON } from 'react-leaflet'
 import { fetchPoints } from '../actions/points'
+import { fetchTrip } from '../actions/trips'
 
 class Trip extends Component {
   constructor(props) {
@@ -9,11 +10,14 @@ class Trip extends Component {
   }
 
 	componentWillMount() {
-    const { dispatch, username, trip, isFetching } = this.props
+    const { dispatch, isFetching } = this.props
+    const { username, trip } = this.props.match.params
     dispatch(fetchPoints(username, trip))
+    dispatch(fetchTrip(username, trip))
   }
 
 	render() {
+    const { username, trip } = this.props.match.params
     const { center, points, isFetching } = this.props
 		if (isFetching) return (
       <div className='hero is-info' style={{width: '100%', height: '300px'}}>
@@ -27,8 +31,8 @@ class Trip extends Component {
       <div className='hero is-info' style={{width: '100%', height: '150px'}}>
         <div className='container'>
           <div className='hero-body' style={{width: '100%', height: '150px'}}>
-            <h1 className='title'>No trip data yet</h1>
-            <h2 className='subtitle'>Go upload some now!</h2>
+            <h1 className='title'>{trip}</h1>
+            <h2 className='subtitle'>{username}'s journey from {trip} to {trip}</h2>
           </div>
         </div>
       </div>

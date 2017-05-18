@@ -40,10 +40,70 @@ export function postNewTrip(username, trip) {
         type: NEW_TRIP_SUCCESS,
         payload: (action, state, res) => {
 					return getJSON(res).then(
-            consol.log(res)
           )
         }
       }, NEW_TRIP_FAILURE]
     }
   }
 }
+
+export const REQUEST_TRIP = 'REQUEST_TRIP'
+export function fetchTrip(username, trip) {
+  return {
+    [CALL_API]: {
+      endpoint: `http://localhost:8081/api/trips/trip/${username}/${trip}`,
+      method: 'GET',
+      types: [REQUEST_TRIP,
+			{
+        type: RECEIVE_TRIP,
+        payload: (action, state, res) => {
+					return getJSON(res).then(
+              (json) => receiveTrip(username, trip, json)
+          )
+        }
+      }, TRIP_FAILURE]
+    }
+  }
+}
+
+export const RECEIVE_TRIP = 'RECEIVE_TRIP'
+function receiveTrip(username, trip, json) {
+  return {
+    type: RECEIVE_TRIP,
+    title: json.title,
+    start: json.start,
+    finish: json.finish,
+    description: description
+  }
+}
+
+export const TRIP_FAILURE = 'TRIP_FAILURE'
+
+export const REQUEST_TRIPS = 'REQUEST_TRIPS'
+export function fetchTrips(username) {
+  return {
+    [CALL_API]: {
+      endpoint: `http://localhost:8081/api/trips/trips/${username}`,
+      method: 'GET',
+      types: [REQUEST_TRIPS,
+			{
+        type: RECEIVE_TRIPS,
+        payload: (action, state, res) => {
+					return getJSON(res).then(
+              (json) => receiveTrip(username, trip, json)
+          )
+        }
+      }, TRIP_FAILURE]
+    }
+  }
+}
+
+export const RECEIVE_TRIPS = 'RECEIVE_TRIPS'
+function receiveTrips(username, trip, json) {
+  return {
+    type: RECEIVE_TRIPS,
+    trips: json.trips
+  }
+}
+
+export const TRIPS_FAILURE = 'TRIPS_FAILURE'

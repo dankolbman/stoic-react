@@ -17,8 +17,8 @@ class Logout extends Component {
   }
 
   handleClick() {
-    this.props.history.push('/')
     this.props.onLogoutClick()
+    this.props.history.push('/')
   }
 }
 

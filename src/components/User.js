@@ -7,12 +7,18 @@ class User extends Component {
     super(props)
   }
 
+	componentWillMount() {
+    const { dispatch, isFetching } = this.props
+    const { username } = this.props.match.params
+    dispatch(fetchTrips(username))
+  }
+
   render() {
-    const { userName } = this.props
+    const { username } = this.props
 
     return (
     <div>
-      <Trip username={this.props.match.params.id} trip={'chi-phl'}/>
+      <Trip username={this.props.match.params.id} />
     </div>
     )
   }
