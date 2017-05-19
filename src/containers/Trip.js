@@ -34,7 +34,60 @@ class Trip extends Component {
         </div>
 				<div className="section">
 					<NewContentNav />
+
+					<div className="tile is-ancestor">
+
+					<div className="tile is-parent">
+						<div className="tile is-child card">
+							<div className="card-image">
+								<figure className="image is-4by3">
+									<img src="http://bulma.io/images/placeholders/1280x960.png"/>
+								</figure>
+							</div>
+							<div className="card-content">
+								<div className="content">
+									Some picture lorem ipsum dolor sit amet
+									<br />
+									<small>11:09 PM - 1 Jan 2016</small>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="tile is-parent">
+						<div className="tile is-child card">
+							<div className="card-content">
+								<div className="content">
+									Some blurb lorem ipsum dolor sit amet
+									<br />
+									<small>11:09 PM - 1 Jan 2016</small>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="tile is-parent">
+						<div className="tile is-child">
+							<div className="card">
+								<div className="card-image">
+									<figure className="image is-4by3">
+										<img src="http://bulma.io/images/placeholders/1280x960.png"/>
+									</figure>
+								</div>
+								<div className="card-content">
+									<div className="content">
+										Some picture lorem ipsum dolor sit amet
+										<br />
+										<small>11:09 PM - 1 Jan 2016</small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
+				</div>
+
       </div>
 		)
 	}
