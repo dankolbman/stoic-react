@@ -30,7 +30,7 @@ class App extends Component {
           />
           <Route exact path="/user/:id" component={Profile}/>
           <Route path="/user/:id/new" component={NewTrip}/>
-          <Route path="/trip/:username/:trip" component={Trip}/>
+          <Route path="/user/:username/trip/:tripid" component={Trip}/>
         </div>
 		)
 	}

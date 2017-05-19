@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
-import { postNewTrip } from '../actions/trips'
-
-//import { newTrip } from '../actions/trip'
+import { postNewTrip } from '../actions/trip'
 
 class NewTrip extends Component {
   constructor(props) {

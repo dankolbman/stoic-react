@@ -9,7 +9,7 @@ class TripSummary extends Component {
 
 	render() {
 		const { username, id, title, start, finish, description  } = this.props
-		const trip_url = `/user/${username}/${id}`
+		const trip_url = `/user/${username}/trip/${id}`
 		return (
       <div className="tile is-parent">
 				<div className="card is-info" style={{width: "100%"}}>

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJSON } from 'react-leaflet'
 import { fetchPoints } from '../actions/points'
-import { fetchTrip } from '../actions/trips'
+import { fetchTrip } from '../actions/trip'
 
 class TripMap extends Component {
   constructor(props) {
@@ -11,31 +11,20 @@ class TripMap extends Component {
 
 	componentWillMount() {
     const { dispatch, isFetching } = this.props
-    const { username, trip } = this.props.match.params
-    dispatch(fetchPoints(username, trip))
-    dispatch(fetchTrip(username, trip))
+    const { username, tripid } = this.props
+    console.log(this.props)
+    dispatch(fetchPoints(username, tripid))
+    dispatch(fetchTrip(username, tripid))
   }
 
 	render() {
-    const { username, trip } = this.props.match.params
-    const { center, points, isFetching } = this.props
+    const { isFetching } = this.props
 		if (isFetching) return (
-      <div className='hero is-info' style={{width: '100%', height: '300px'}}>
-        <div className='container'>
-          <div className='button is-info is-loading' style={{width: '100%', height: '270px'}}></div>
-          <h3>Loading the trip map, hold tight...</h3>
-        </div>
-      </div>
+          <div className='button is-info is-loading' style={{width: '100%', height: '270px'}}>
+          <h3>Loading the trip map, hold tight...</h3></div>
     )
-    if (this.props.points) return (
-      <div className='hero is-info' style={{width: '100%', height: '150px'}}>
-        <div className='container'>
-          <div className='hero-body' style={{width: '100%', height: '150px'}}>
-            <h1 className='title'>{trip}</h1>
-            <h2 className='subtitle'>{username}'s journey from {trip} to {trip}</h2>
-          </div>
-        </div>
-      </div>
+    if (this.props.lines.length === 0) return (
+            <small>Nothing to display yet!</small>
     )
 
 		return (
@@ -73,22 +62,20 @@ class TripMap extends Component {
 
 TripMap.propTypes = {
 	username: PropTypes.string.isRequired,
-	trip: PropTypes.string.isRequired,
-  center: PropTypes.array.isRequired,
-  points: PropTypes.object.isRequired,
+	tripid: PropTypes.string.isRequired,
+	trip: PropTypes.object.isRequired,
+	lines: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
-  const { auth, trip } = state
-	const { center, points, isFetching } = trip
-  const { username, isAuthenticated } = auth
+  const { isFetching } = state.trip
+  const trip = isFetching ? {} : state.trip.trip
+  const lines = []
 
   return {
-    username,
-    center,
-    points,
+    lines,
     isFetching
   }
 }

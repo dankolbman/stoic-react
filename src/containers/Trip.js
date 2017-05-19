@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { fetchTrip } from '../actions/trips'
+import { fetchTrip } from '../actions/trip'
 import TripMap from '../components/TripMap'
+import TripNav from '../components/TripNav'
 
 class Trip extends Component {
   constructor(props) {
@@ -10,33 +11,42 @@ class Trip extends Component {
 
 	componentWillMount() {
     const { dispatch, isFetching } = this.props
-    const { username, trip } = this.props.match.params
+    const { username, tripid } = this.props.match.params
+    dispatch(fetchTrip(username, tripid))
   }
 
 	render() {
-    const { username, trip } = this.props.match.params
+    const { title, description, start, finish } = this.props.trip
+    const { username, tripid } = this.props.match.params
 		return (
       <div>
-        <TripMap username={username} trip={trip}/>
+        <div className='hero is-info' style={{width: '100%'}}>
+          <div className='container'>
+            <div className='hero-body has-text-centered' style={{width: '100%'}}>
+              <TripMap username={username} tripid={tripid}/>
+              <h1 className="title">{ title }</h1>
+              <h2 className="subtitle">{description}</h2>
+              <h3>{start} to {finish}</h3>
+            </div>
+						<TripNav />
+          </div>
+        </div>
       </div>
 		)
 	}
 }
 
 Trip.propTypes = {
-	username: PropTypes.string.isRequired,
-	trip: PropTypes.string.isRequired
+	trip: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
-  const { auth, trip } = state
-	const { center, points, isFetching } = trip
-  const { username, isAuthenticated } = auth
+  console.log(state)
+	const { isFetching } = state.trip
+  const trip = isFetching ? {} : state.trip.trip
 
   return {
-    username,
-    center,
-    points,
+    trip,
     isFetching
   }
 }

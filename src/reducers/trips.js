@@ -1,5 +1,4 @@
-import { REQUEST_TRIP, RECEIVE_TRIP, TRIP_FAILURE,
-         REQUEST_TRIPS, RECEIVE_TRIPS, TRIPS_FAILURE } from '../actions/trips'
+import { REQUEST_TRIPS, RECEIVE_TRIPS, TRIPS_FAILURE } from '../actions/trips'
 
 const initialState = {
   isFetching: true,

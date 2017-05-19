@@ -1,85 +1,10 @@
 import { CALL_API, getJSON } from 'redux-api-middleware'
 var Config = require('Config')
 
-export const NEW_TRIP_REQUEST = 'NEW_TRIP_REQUEST'
-export function newTripRequest(form) {
-	return {
-    type: NEW_TRIP_REQUEST, 
-    isFetching: true,
-    form
-  }
-}
-
-export const NEW_TRIP_FAILURE = 'NEW_TRIP_FAILURE'
-function newTripFail(message) {
-  return {
-    type: NEW_TRIP_FAILURE,
-    isFetching: false,
-    message
-  }
-}
-
-export const NEW_TRIP_SUCCESS = 'NEW_TRIP_SUCCESS'
-export function newTripSuccess(trip) {
-  return {
-    type: NEW_TRIP_SUCCESS,
-    isFetching: false,
-    trip: trip
-  }
-}
-
-export function postNewTrip(username, trip) {
-  return {
-    [CALL_API]: {
-      endpoint: `http://localhost:8081/api/trips/trips/${username}`,
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(trip),
-      types: [NEW_TRIP_REQUEST, 
-			{
-        type: NEW_TRIP_SUCCESS,
-        payload: (action, state, res) => {
-					return getJSON(res).then(
-          )
-        }
-      }, NEW_TRIP_FAILURE]
-    }
-  }
-}
-
-export const REQUEST_TRIP = 'REQUEST_TRIP'
-export function fetchTrip(username, trip) {
-  return {
-    [CALL_API]: {
-      endpoint: `http://localhost:8081/api/trips/trip/${username}/${trip}`,
-      method: 'GET',
-      types: [REQUEST_TRIP,
-			{
-        type: RECEIVE_TRIP,
-        payload: (action, state, res) => {
-					return getJSON(res).then(
-              (json) => receiveTrip(username, trip, json)
-          )
-        }
-      }, TRIP_FAILURE]
-    }
-  }
-}
-
-export const RECEIVE_TRIP = 'RECEIVE_TRIP'
-function receiveTrip(username, trip, json) {
-  return {
-    type: RECEIVE_TRIP,
-    title: json.title,
-    start: json.start,
-    finish: json.finish,
-    description: description
-  }
-}
-
-export const TRIP_FAILURE = 'TRIP_FAILURE'
-
 export const REQUEST_TRIPS = 'REQUEST_TRIPS'
+export const RECEIVE_TRIPS = 'RECEIVE_TRIPS'
+export const TRIPS_FAILURE = 'TRIPS_FAILURE'
+
 export function fetchTrips(username) {
   return {
     [CALL_API]: {
@@ -93,12 +18,11 @@ export function fetchTrips(username) {
               (json) => receiveTrips(username, json)
           )
         }
-      }, TRIP_FAILURE]
+      }, TRIPS_FAILURE]
     }
   }
 }
 
-export const RECEIVE_TRIPS = 'RECEIVE_TRIPS'
 function receiveTrips(username, json) {
   return {
     type: RECEIVE_TRIPS,
@@ -106,5 +30,3 @@ function receiveTrips(username, json) {
     user_trips: json.trips
   }
 }
-
-export const TRIPS_FAILURE = 'TRIPS_FAILURE'
