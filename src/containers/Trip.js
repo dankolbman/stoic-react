@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { fetchTrip } from '../actions/trip'
 import TripMap from '../components/TripMap'
+import NewContentNav from '../components/NewContentNav'
 import TripNav from '../components/TripNav'
 
 class Trip extends Component {
@@ -28,9 +29,12 @@ class Trip extends Component {
               <h2 className="subtitle">{description}</h2>
               <h3>{start} to {finish}</h3>
             </div>
-						<TripNav />
           </div>
+					<TripNav />
         </div>
+				<div className="section">
+					<NewContentNav />
+				</div>
       </div>
 		)
 	}
