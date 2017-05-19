@@ -2,36 +2,29 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Map, TileLayer, GeoJSON } from 'react-leaflet'
 import { fetchPoints } from '../actions/points'
+import { fetchTrip } from '../actions/trip'
 
-class Trip extends Component {
+class TripMap extends Component {
   constructor(props) {
     super(props)
   }
 
 	componentWillMount() {
-    const { dispatch, username, trip, isFetching } = this.props
-    dispatch(fetchPoints(username, trip))
+    const { dispatch, isFetching } = this.props
+    const { username, tripid } = this.props
+    console.log(this.props)
+    dispatch(fetchPoints(username, tripid))
+    dispatch(fetchTrip(username, tripid))
   }
 
 	render() {
-    const { center, points, isFetching } = this.props
+    const { isFetching } = this.props
 		if (isFetching) return (
-      <div className='hero is-info' style={{width: '100%', height: '300px'}}>
-        <div className='container'>
-          <div className='button is-infois-loading' style={{width: '100%', height: '270px'}}></div>
-          <h3>Loading the trip map, hold tight...</h3>
-        </div>
-      </div>
+          <div className='button is-info is-loading' style={{width: '100%', height: '270px'}}>
+          <h3>Loading the trip map, hold tight...</h3></div>
     )
-    if (this.props.points) return (
-      <div className='hero is-info' style={{width: '100%', height: '150'}}>
-        <div className='container'>
-          <div className='hero-body' style={{width: '100%', height: '150px'}}>
-            <h1 className='title'>No trip data yet</h1>
-            <h2 className='subtitle'>Go upload some now!</h2>
-          </div>
-        </div>
-      </div>
+    if (this.props.lines.length === 0) return (
+            <small>Nothing to display yet!</small>
     )
 
 		return (
@@ -67,28 +60,24 @@ class Trip extends Component {
 	}
 }
 
-Trip.propTypes = {
+TripMap.propTypes = {
 	username: PropTypes.string.isRequired,
-	trip: PropTypes.string.isRequired,
-  center: PropTypes.array.isRequired,
-  points: PropTypes.object.isRequired,
+	tripid: PropTypes.string.isRequired,
+	trip: PropTypes.object.isRequired,
+	lines: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
-  const { auth, trip } = state
-	const { center, points, isFetching } = trip
-  const { username, isAuthenticated } = auth
-  console.log('state')
-  console.log(state)
+  const { isFetching } = state.trip
+  const trip = isFetching ? {} : state.trip.trip
+  const lines = []
 
   return {
-    username,
-    center,
-    points,
+    lines,
     isFetching
   }
 }
 
-export default connect(mapStateToProps)(Trip)
+export default connect(mapStateToProps)(TripMap)

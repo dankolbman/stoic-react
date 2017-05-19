@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import Login from '../components/Login.js'
 import Logout from '../components/Logout.js'
 import { loginUser, logoutUser } from '../actions/auth'
@@ -20,9 +20,14 @@ class Navbar extends Component {
 			<div className="container">
         <div className="nav-left">
           <Link to="/" className="nav-item">
-            <img src="./static/stoic_black.png" alt="Stoic logo" />
+            <img src="/static/stoic_black.png" alt="Stoic logo" />
           </Link>
-        </div>
+					{isAuthenticated &&
+					<Link to={"/user/"+username+"/new"} className="nav-item is-tab">
+							Embark!
+					</Link>
+					}
+				</div>
         <div className="nav-right nav-menu">
           {!isAuthenticated &&
             <div className="nav-item">
@@ -46,7 +51,7 @@ class Navbar extends Component {
 					</Link>
 					}
           {isAuthenticated &&
-						<Logout onLogoutClick={() => dispatch(logoutUser())} />
+            <Route path="/" render={(props) => <Logout {...props} onLogoutClick={() => dispatch(logoutUser())} />} />
           }
 
         </div>

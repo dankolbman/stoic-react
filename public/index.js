@@ -15,7 +15,7 @@ import { AppContainer } from 'react-hot-loader'
 import authMiddleware from './middleware/auth'
 import tripApp from './reducers/app'
 import { fetchPoints } from './actions/points'
-import App from './containers/App'
+import App from './components/App'
 
 import './stoic.sass'
 
@@ -40,7 +40,7 @@ render(
 )
 
 if (module.hot) {
-  module.hot.accept('./containers/App', () => {
+  module.hot.accept('./components/App', () => {
     render(App)
   });
 }

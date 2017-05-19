@@ -11,8 +11,6 @@ export function requestPoints(username, trip) {
 
 export const RECEIVE_POINTS = 'RECEIVE_POINTS'
 function receivePoints(username, trip, json) {
-  console.log('recieved')
-  console.log(json)
   if (json.count > 1) {
     var center = [ coords.reduce( function(sum, a) { return sum + a [1]},0)/
                             (payload.geometry.coordinates.length||1),
@@ -43,7 +41,7 @@ export function pointsFail() {
 export function fetchPoints(username, trip) {
   return {
     [CALL_API]: {
-      endpoint: 'http://localhost:8081/api/geo/lines/dan/chi-phl',
+      endpoint: `http://localhost:8081/api/geo/lines/${username}/${trip}`,
       method: 'GET',
       types: [REQUEST_POINTS, 
 			{

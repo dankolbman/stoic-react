@@ -1,21 +1,26 @@
-var webpack = require('webpack');
-var path = require('path');
+const { resolve } = require('path')
+const webpack = require('webpack')
+var path = require('path')
 
 module.exports = {
+    context: resolve(__dirname, 'src'),
     devtool: 'inline-source-map',
     devServer: {
-      historyApiFallback: true,
-      contentBase: './',
-      hot: true
+			contentBase: resolve(__dirname, 'public'),
+      hot: true,
+			publicPath: '/',
+      historyApiFallback: true
     },
-    entry: [
-        'webpack-dev-server/client?http://127.0.0.1:8080/',
-        'webpack/hot/only-dev-server',
-        './src'
-    ],
+		entry: [
+			'react-hot-loader/patch',
+			'webpack-dev-server/client?http://localhost:8080',
+			'webpack/hot/only-dev-server',
+			'./index.js'
+		],
     output: {
         path: path.join(__dirname, 'public'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+				publicPath: '/'
     },
     resolve: {
         modules: ['node_modules', 'src'],
@@ -26,10 +31,7 @@ module.exports = {
           {
               test: /\.jsx?$/,
               loader: 'babel-loader',
-              exclude: /node_modules/,
-              query: {
-                presets: ['es2015', 'react']
-              }
+              exclude: /node_modules/
           },
 					{
 							test: /\.sass$/,
@@ -50,6 +52,7 @@ module.exports = {
 		},
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+				new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
     ]
 };
