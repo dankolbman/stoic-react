@@ -49,6 +49,7 @@ TripNav.propTypes = {
 function mapStateToProps(state) {
   const activeTab = 'activity'
   return {
+    activeTab
   }
 }
 
