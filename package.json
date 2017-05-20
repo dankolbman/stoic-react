@@ -22,6 +22,7 @@
     "react-hot-loader": "^3.0.0-beta.7",
     "react-leaflet": "^1.1.6",
     "react-redux": "^4.0.4",
+    "react-redux-form": "^1.11.1",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-api-middleware": "^1.0.3",

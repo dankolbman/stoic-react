@@ -67,7 +67,7 @@ export function fetchTrip(username, trip) {
 }
 
 export const RECEIVE_TRIP = 'RECEIVE_TRIP'
-function receiveTrip(username, trip, json) {
+export function receiveTrip(username, trip, json) {
   return {
     type: RECEIVE_TRIP,
     trip: json.trip
@@ -75,3 +75,11 @@ function receiveTrip(username, trip, json) {
 }
 
 export const TRIP_FAILURE = 'TRIP_FAILURE'
+
+export const CHANGE_TAB  = 'CHANGE_TAB'
+export function changeTab(tabname) {
+  return {
+    type: CHANGE_TAB,
+    tabname: tabname,
+  }
+}
