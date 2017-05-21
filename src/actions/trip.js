@@ -83,3 +83,25 @@ export function changeTab(tabname) {
     tabname: tabname,
   }
 }
+
+export const UPLOAD_REQUEST = 'UPLOAD_REQUEST'
+export const UPLOAD_SUCCESS= 'UPLOAD_SUCCESS'
+export const UPLOAD_FAILURE = 'UPLOAD_FAILURE'
+export function uploadFile(username, trip, files) {
+  console.log(files)
+  const formData = new FormData()
+  formData.append('files', files[0])
+
+  const endpoint = `http://localhost:5000/points/${username}/${trip}/csv`
+	var headers = new Headers();
+	headers.append('Content-Type', 'multipart/form-data, boundary=--abc--abc--')
+	fetch(endpoint, {
+					method: 'POST',
+					header: headers,
+					body: formData
+			}).then(
+					(response) => {
+							console.log(response);
+					}
+			).catch( () => {} );
+}

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { LocalForm, Control, Errors } from 'react-redux-form';
+import { uploadFile } from '../actions/trip'
 
 const required = (val) => val && val.length;
 
@@ -10,17 +11,19 @@ class UploadForm extends Component {
   }
 
   render() {
+    const { dispatch } = this.props
+    const username = 'dan'
     return (
-        <LocalForm model='file'
+        <LocalForm model='files' 
           onUpdate={(form) => this.handleUpdate(form)}
           onChange={(values) => this.handleChange(values)}
           onSubmit={(values) => this.handleSubmit(values)}
         >
           <div className="field">
-            <Control.file model=".file" validators={{required}}/>
+            <Control.file model=".files" validators={{required}}/>
             <Errors
               className="help is-danger"
-              model="file.file"
+              model="files.files"
               show="touched"
               messages={{
                 required: 'File is required',
@@ -47,6 +50,7 @@ class UploadForm extends Component {
 
   handleSubmit(values) {
     console.log(values)
+    uploadFile('dan', '2', values)
   }
 }
 

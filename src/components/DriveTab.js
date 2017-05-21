@@ -39,7 +39,7 @@ class DriveTab extends Component {
           <div className="field">
             <h2 className="subtitle">OR</h2>
           </div>
-          <UploadForm />
+            <UploadForm />
 				</section>
     )
   }
