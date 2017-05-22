@@ -22,7 +22,7 @@ class TripMap extends Component {
           <div className='button is-info is-loading' style={{width: '100%', height: '270px'}}>
           <h3>Loading the trip map, hold tight...</h3></div>
     )
-    if (this.props.lines.length === 0) return (
+    if (this.props.points.length === 0) return (
             <small>Nothing to display yet!</small>
     )
 
@@ -72,9 +72,13 @@ function mapStateToProps(state) {
   const { isFetching } = state.trip
   const trip = isFetching ? {} : state.trip.trip
   const lines = []
+  const { points, center } = state.points
 
   return {
     lines,
+    points,
+    center,
+    trip,
     isFetching
   }
 }
