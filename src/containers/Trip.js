@@ -5,7 +5,7 @@ import TripMap from '../components/TripMap'
 import NewContentNav from '../components/NewContentNav'
 import TripNav from '../components/TripNav'
 import ActivityTab from '../components/ActivityTab'
-import DriveTab  from '../components/DriveTab'
+import UploadTab  from '../components/UploadTab'
 
 class Trip extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class Trip extends Component {
               <ActivityTab username={username} tripid={tripid}/>
             ),
             'gps': (
-              <DriveTab isActive={true}/>
+              <UploadTab isActive={true}/>
             )
           }[currentTab]}
         </div>

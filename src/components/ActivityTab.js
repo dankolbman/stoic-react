@@ -4,7 +4,6 @@ import { fetchTrip } from '../actions/trip'
 import TripMap from '../components/TripMap'
 import NewContentNav from '../components/NewContentNav'
 import TripNav from '../components/TripNav'
-import DriveModal  from '../components/DriveModal'
 
 class ActivityTab extends Component {
   constructor(props) {

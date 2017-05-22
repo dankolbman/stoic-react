@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import GooglePicker from 'react-google-picker';
+import GooglePicker from 'react-google-picker'
 import UploadForm from '../components/UploadForm'
+import DropZone from '../components/DropZone'
 
-class DriveTab extends Component {
+class UploadTab extends Component {
   constructor(props) {
     super(props)
   }
@@ -11,9 +12,9 @@ class DriveTab extends Component {
   render() {
     const { isActive } = this.props
 
-		const CLIENT_ID = 'PASTEME.apps.googleusercontent.com';
-		const DEVELOPER_KEY = 'PASTEME';
-		const SCOPE = ['https://www.googleapis.com/auth/drive.readonly'];
+		const CLIENT_ID = 'PASTEME.apps.googleusercontent.com'
+		const DEVELOPER_KEY = 'PASTEME'
+		const SCOPE = ['https://www.googleapis.com/auth/drive.readonly']
 
     return (
 				<section className="section has-text-centered">
@@ -39,13 +40,13 @@ class DriveTab extends Component {
           <div className="field">
             <h2 className="subtitle">OR</h2>
           </div>
-            <UploadForm />
+					<DropZone />
 				</section>
     )
   }
 }
 
-DriveTab.propTypes = {
+UploadTab.propTypes = {
 	isActive: PropTypes.bool.isRequired
 }
 
@@ -54,4 +55,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(DriveTab)
+export default connect(mapStateToProps)(UploadTab)

@@ -12,7 +12,6 @@ class TripMap extends Component {
 	componentWillMount() {
     const { dispatch, isFetching } = this.props
     const { username, tripid } = this.props
-    console.log(this.props)
     dispatch(fetchPoints(username, tripid))
     dispatch(fetchTrip(username, tripid))
   }
