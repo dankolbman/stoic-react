@@ -24,15 +24,18 @@ class Trip extends Component {
     const { username, tripid } = this.props.match.params
 		return (
       <div>
-        <div className='hero is-info' style={{width: '100%'}}>
-          <div className='container'>
-            <div className='hero-body has-text-centered' style={{width: '100%'}}>
-              <TripMap username={username} tripid={tripid}/>
+        <div className='hero is-dark' style={{width: '100%'}}>
+            <div className="container">
               <h1 className="title">{ title }</h1>
-              <h2 className="subtitle">{description}</h2>
-              <h3>{start} to {finish}</h3>
+              <h2 className="subtitle">{start} to {finish}</h2>
             </div>
-          </div>
+            <div className='hero-body has-text-centered is-paddingless' style={{width: '100%'}}>
+              
+              <TripMap username={username} tripid={tripid}/>
+              <div className="content">
+                <h2 className="subtitle">{description}</h2>
+              </div>
+            </div>
 					<TripNav />
         </div>
 				<div className="section">

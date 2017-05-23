@@ -45,14 +45,6 @@ class TripMap extends Component {
 						url="https://api.mapbox.com/styles/v1/mapbox/traffic-day-v2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGFuazUyOCIsImEiOiJzOVp0TzJnIn0.1c8obLmcPHN4LosoNan8DQ"
 						attribution="<attribution>" />
 				</Map>
-        <div className="container">
-          <div className="columns">
-            <div className="column">
-              <div className="title">{this.props.username}'s trip</div>
-
-            </div>
-          </div>
-        </div>
       </div>
 		)
 	}

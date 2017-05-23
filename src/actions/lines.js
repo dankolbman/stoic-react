@@ -17,17 +17,11 @@ function receiveLines(username, tripid, json) {
   } else {
     var lines = null
   }
-  console.log('hello')
-  console.log('hello')
-  console.log('hello')
-  console.log(lines)
   const coords = lines[0].geometry.coordinates
-  console.log('hello')
   var minlat = coords.reduce( function(a,b) { return Math.min(a,b[1])},400)
   var minlon = coords.reduce( function(a,b) { return Math.min(a,b[0])},400)
   var maxlat = coords.reduce( function(a,b) { return Math.max(a,b[1])},-400)
   var maxlon = coords.reduce( function(a,b) { return Math.max(a,b[0])},-400)
-  console.log(minlat, minlon, maxlat, maxlon)
   return {
     type: RECEIVE_LINES,
     username: username,
