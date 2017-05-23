@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { fetchTrip } from '../actions/trip'
+import { fetchTrip, changeTab } from '../actions/trip'
 import TripMap from '../components/TripMap'
 import NewContentNav from '../components/NewContentNav'
 import TripNav from '../components/TripNav'
+import ActivityTab from '../components/ActivityTab'
+import UploadTab  from '../components/UploadTab'
 
 class Trip extends Component {
   constructor(props) {
@@ -17,93 +19,59 @@ class Trip extends Component {
   }
 
 	render() {
+    const { dispatch, currentTab, isFetching } = this.props
     const { title, description, start, finish } = this.props.trip
     const { username, tripid } = this.props.match.params
 		return (
       <div>
-        <div className='hero is-info' style={{width: '100%'}}>
-          <div className='container'>
-            <div className='hero-body has-text-centered' style={{width: '100%'}}>
-              <TripMap username={username} tripid={tripid}/>
+        <div className='hero is-dark' style={{width: '100%'}}>
+            <div className="container">
               <h1 className="title">{ title }</h1>
-              <h2 className="subtitle">{description}</h2>
-              <h3>{start} to {finish}</h3>
+              <h2 className="subtitle">{start} to {finish}</h2>
             </div>
-          </div>
+            <div className='hero-body has-text-centered is-paddingless' style={{width: '100%'}}>
+              
+              <TripMap username={username} tripid={tripid}/>
+              <div className="content">
+                <h2 className="subtitle">{description}</h2>
+              </div>
+            </div>
 					<TripNav />
         </div>
 				<div className="section">
-					<NewContentNav />
+					<NewContentNav onTabClick={(tabname) => this.onTabClick(tabname)}/>
 
-					<div className="tile is-ancestor">
-
-					<div className="tile is-parent">
-						<div className="tile is-child card">
-							<div className="card-image">
-								<figure className="image is-4by3">
-									<img src="http://bulma.io/images/placeholders/1280x960.png"/>
-								</figure>
-							</div>
-							<div className="card-content">
-								<div className="content">
-									Some picture lorem ipsum dolor sit amet
-									<br />
-									<small>11:09 PM - 1 Jan 2016</small>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div className="tile is-parent">
-						<div className="tile is-child card">
-							<div className="card-content">
-								<div className="content">
-									Some blurb lorem ipsum dolor sit amet
-									<br />
-									<small>11:09 PM - 1 Jan 2016</small>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div className="tile is-parent">
-						<div className="tile is-child">
-							<div className="card">
-								<div className="card-image">
-									<figure className="image is-4by3">
-										<img src="http://bulma.io/images/placeholders/1280x960.png"/>
-									</figure>
-								</div>
-								<div className="card-content">
-									<div className="content">
-										Some picture lorem ipsum dolor sit amet
-										<br />
-										<small>11:09 PM - 1 Jan 2016</small>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				</div>
-
+          {{
+            'activity': (
+              <ActivityTab username={username} tripid={tripid}/>
+            ),
+            'gps': (
+              <UploadTab isActive={true}/>
+            )
+          }[currentTab]}
+        </div>
       </div>
 		)
 	}
+
+  onTabClick(tabname) {
+    this.props.dispatch(changeTab(tabname))
+  }
 }
 
 Trip.propTypes = {
-	trip: PropTypes.object.isRequired
+  dispatch: PropTypes.func.isRequired,
+	trip: PropTypes.object.isRequired,
+	currentTab: PropTypes.string.isRequired
 }
 
 function mapStateToProps(state) {
-  console.log(state)
-	const { isFetching } = state.trip
+	const { currentTab, isFetching } = state.trip
   const trip = isFetching ? {} : state.trip.trip
 
   return {
     trip,
+    currentTab,
     isFetching
   }
 }

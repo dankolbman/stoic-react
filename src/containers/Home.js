@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import GooglePicker from 'react-google-picker';
 
 class Home extends Component {
   constructor(props) {
@@ -7,6 +8,10 @@ class Home extends Component {
 
   render() {
     const { errorMessage } = this.props
+
+		const CLIENT_ID = '492538251113-dfq1le8b5qhl273p8o6l60b6to424qtp.apps.googleusercontent.com';
+		const DEVELOPER_KEY = 'AIzaSyAU3QbPd7bo59SLibkw5JuR-QkH8LlSKDc';
+		const SCOPE = ['https://www.googleapis.com/auth/drive.readonly'];
 
     return (
     <section>
