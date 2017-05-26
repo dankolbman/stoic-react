@@ -1,27 +1,26 @@
-import { REQUEST_LINES, RECEIVE_LINES, LINES_FAILURE } from '../actions/lines'
+import { REQUEST_IMAGES, RECEIVE_IMAGES, IMAGES_FAILURE } from '../actions/images'
 
 const initialState = {
   isFetching: true,
-  lines: [],
+  images: [],
   username: '',
   tripid: ''
 }
 
-function lines(state = initialState, action) {
+function images(state = initialState, action) {
   switch (action.type) {
-    case REQUEST_LINES:
+    case REQUEST_IMAGES:
       return Object.assign({}, state, {
         isFetching: true
       })
-    case RECEIVE_LINES:
+    case RECEIVE_IMAGES:
       return Object.assign({}, state, {
         isFetching: false,
-        lines: action.payload.lines,
+        images: action.payload.images,
         username: action.payload.username,
-        bbox: action.payload.bbox,
         tripid: action.payload.tripid
       })
-    case LINES_FAILURE:
+    case IMAGES_FAILURE:
       return Object.assign({}, state, {
         isFetching: false
       })
@@ -30,4 +29,4 @@ function lines(state = initialState, action) {
   }
 }
 
-export default lines
+export default images

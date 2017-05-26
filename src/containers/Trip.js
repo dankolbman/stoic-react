@@ -6,6 +6,7 @@ import NewContentNav from '../components/NewContentNav'
 import TripNav from '../components/TripNav'
 import ActivityTab from '../components/ActivityTab'
 import UploadTab  from '../components/UploadTab'
+import PhotoTab from '../components/PhotoTab'
 
 class Trip extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class Trip extends Component {
                 <h2 className="subtitle">{description}</h2>
               </div>
             </div>
-					<TripNav />
+					<TripNav onTabClick={(tabname) => this.onTabClick(tabname)} />
         </div>
 				<div className="section">
 					<NewContentNav onTabClick={(tabname) => this.onTabClick(tabname)}/>
@@ -50,6 +51,9 @@ class Trip extends Component {
             ),
             'photo': (
               <UploadTab isActive={true} type={'photo'} />
+            ),
+            'photos': (
+              <PhotoTab isActive={true} type={'photo'} />
             )
           }[currentTab]}
         </div>
