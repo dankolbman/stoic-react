@@ -10,7 +10,7 @@ class UploadTab extends Component {
   }
 
   render() {
-    const { isActive } = this.props
+    const { isActive, type } = this.props
 
 		const CLIENT_ID = 'PASTEME.apps.googleusercontent.com'
 		const DEVELOPER_KEY = 'PASTEME'
@@ -40,14 +40,15 @@ class UploadTab extends Component {
           <div className="field">
             <h2 className="subtitle">OR</h2>
           </div>
-					<DropZone />
+					<DropZone type={type} />
 				</section>
     )
   }
 }
 
 UploadTab.propTypes = {
-	isActive: PropTypes.bool.isRequired
+	isActive: PropTypes.bool.isRequired,
+	type: PropTypes.string.isRequired
 }
 
 function mapStateToProps(state) {

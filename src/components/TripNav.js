@@ -7,11 +7,12 @@ class TripNav extends Component {
   }
 
 	render() {
-    const { activeTab } = this.props
+    const { currentTab, onTabClick } = this.props
 		return (
         <div className="tabs is-centered is-boxed">
           <ul>
-            <li className={activeTab == 'activity' ? "is-active" : ""}><a>
+            <li className={currentTab== 'activity' ? "is-active" : ""}>
+            <a onClick={() => this.handleClick('activity')}>
               <span className="icon">
                 <i className="fa fa-bars"></i></span>
               <span>Activity</span>
@@ -21,12 +22,13 @@ class TripNav extends Component {
                 <i className="fa fa-bullseye"></i></span>
               <span>Live</span>
             </a></li>
-            <li><a>
+            <li><a onClick={() => this.handleClick('blurbs')}>
               <span className="icon">
                 <i className="fa fa-comment"></i></span>
               <span>Blurbs</span>
             </a></li>
-            <li><a>
+            <li className={currentTab== 'photos' ? "is-active" : ""}>
+            <a onClick={() => this.handleClick('photos')}>
               <span className="icon">
                 <i className="fa fa-camera"></i></span>
               <span>Pictures</span>
@@ -40,16 +42,21 @@ class TripNav extends Component {
         </div>
 		)
 	}
+
+  handleClick(tabname) {
+    this.props.onTabClick(tabname)
+  }
 }
 
 TripNav.propTypes = {
-	activeTab: PropTypes.string.isRequired
+	onTabClick: PropTypes.func.isRequired,
+	currentTab: PropTypes.string.isRequired
 }
 
 function mapStateToProps(state) {
-  const activeTab = 'activity'
+  const { currentTab } = state.trip
   return {
-    activeTab
+    currentTab
   }
 }
 

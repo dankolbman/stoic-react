@@ -11,7 +11,6 @@ export function requestLines(username, trip) {
 
 export const RECEIVE_LINES = 'RECEIVE_LINES'
 function receiveLines(username, tripid, json) {
-  console.log(json)
   if (json.count > 0) {
     var lines = json.lines
   } else {
