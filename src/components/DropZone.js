@@ -10,12 +10,26 @@ class DropZone extends Component {
 
   render() {
     var ReactDOMServer = require('react-dom/server');
-    const { username, tripid } = this.props
+    const { username, tripid, type } = this.props
+    var url = ''
+    var filetypes = []
+    switch(type) {
+      case 'gps':
+        url = `http://localhost:8081/api/geo/points/${username}/${tripid}/csv`
+        filetypes = ['.csv']
+        break
+      case 'photo':
+        url = `http://localhost:8081/api/images/image/${username}/${tripid}`
+        filetypes  = ['.jpg', '.png', '.gif']
+        break
+    }
 
+    console.log(type, url, filetypes)
 		const componentConfig = {
-			iconFiletypes: ['.csv'],
 			showFiletypeIcon: true,
-			postUrl: `http://localhost:8081/api/geo/points/${username}/${tripid}/csv`
+      postUrl: url,
+      iconFiletypes: filetypes,
+      uploadMultiple: false
 		}
 
     const djsConfig = {

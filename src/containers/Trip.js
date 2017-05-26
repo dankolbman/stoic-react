@@ -46,7 +46,10 @@ class Trip extends Component {
               <ActivityTab username={username} tripid={tripid}/>
             ),
             'gps': (
-              <UploadTab isActive={true}/>
+              <UploadTab isActive={true} type={'gps'}/>
+            ),
+            'photo': (
+              <UploadTab isActive={true} type={'photo'} />
             )
           }[currentTab]}
         </div>
