@@ -31,7 +31,7 @@ export function newTripSuccess(trip) {
 export function postNewTrip(username, trip) {
   return {
     [CALL_API]: {
-      endpoint: `http://localhost:8081/api/trips/trips/${username}`,
+      endpoint: `${Config.apiUrl}trips/trips/${username}`,
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(trip),
@@ -51,7 +51,7 @@ export const REQUEST_TRIP = 'REQUEST_TRIP'
 export function fetchTrip(username, trip) {
   return {
     [CALL_API]: {
-      endpoint: `http://localhost:8081/api/trips/trips/${username}/${trip}`,
+      endpoint: `${Config.apiUrl}/trips/trips/${username}/${trip}`,
       method: 'GET',
       types: [REQUEST_TRIP,
 			{
@@ -92,7 +92,7 @@ export function uploadFile(username, trip, files) {
   const formData = new FormData()
   formData.append('files', files[0])
 
-  const endpoint = `http://localhost:5000/points/${username}/${trip}/csv`
+  const endpoint = `${Config.apiUrl}geo/points/${username}/${trip}/csv`
 	var headers = new Headers();
 	headers.append('Content-Type', 'multipart/form-data, boundary=--abc--abc--')
 	fetch(endpoint, {

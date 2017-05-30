@@ -15,8 +15,8 @@ function receiveImages(username, tripid, json) {
     var images = json.images
     console.log(images[0])
     for (var i = 0; i < images.length; i++) {
-      images[i].src = `${Config.url}${images[i].paths['1024x640']}`
-      images[i].thumbnail = `${Config.url}${images[i].paths['180h']}`
+      images[i].src = `${Config.url}/${images[i].paths['1024x640']}`
+      images[i].thumbnail = `${Config.url}/${images[i].paths['180h']}`
       images[i].thumbnailWidth = images[i].width
       images[i].thumbnailHeight = images[i].height
       images[i].tags = [{'title': 'comment', 'value': images[i].created_at}]
@@ -48,7 +48,7 @@ export function imagesFail() {
 export function fetchImages(username, trip) {
   return {
     [CALL_API]: {
-      endpoint: `http://localhost:8081/api/images/image/${username}/${trip}?size=100`,
+      endpoint: `${Config.apiUrl}/images/image/${username}/${trip}?size=100`,
       method: 'GET',
       types: [REQUEST_IMAGES, 
 			{

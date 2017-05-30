@@ -41,7 +41,7 @@ export function linesFail() {
 export function fetchLines(username, trip) {
   return {
     [CALL_API]: {
-      endpoint: `http://localhost:8081/api/geo/lines/${username}/${trip}`,
+      endpoint: `${Config.apiUrl}/geo/lines/${username}/${trip}`,
       method: 'GET',
       types: [REQUEST_LINES, 
 			{

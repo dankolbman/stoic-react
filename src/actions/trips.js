@@ -8,7 +8,7 @@ export const TRIPS_FAILURE = 'TRIPS_FAILURE'
 export function fetchTrips(username) {
   return {
     [CALL_API]: {
-      endpoint: `http://localhost:8081/api/trips/trips/${username}`,
+      endpoint: `${Config.apiUrl}/trips/trips/${username}`,
       method: 'GET',
       types: [REQUEST_TRIPS,
 			{
