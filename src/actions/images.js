@@ -15,15 +15,13 @@ function receiveImages(username, tripid, json) {
     var images = json.images
     console.log(images[0])
     for (var i = 0; i < images.length; i++) {
-      images[i].src = `http://localhost:8081${images[i].paths['1024x640']}`
-      images[i].thumbnail = `http://localhost:8081${images[i].paths['180h']}`
+      images[i].src = `${Config.url}${images[i].paths['1024x640']}`
+      images[i].thumbnail = `${Config.url}${images[i].paths['180h']}`
       images[i].thumbnailWidth = images[i].width
       images[i].thumbnailHeight = images[i].height
       images[i].tags = [{'title': 'comment', 'value': images[i].created_at}]
       delete images[i].basepath
       delete images[i].path
-      delete images[i].lat
-      delete images[i].lon
       delete images[i].width
       delete images[i].height
     }

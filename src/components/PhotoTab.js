@@ -11,7 +11,11 @@ class PhotoTab extends Component {
 	componentWillMount() {
     const { dispatch, isFetching } = this.props
     const { username, tripid } = this.props
-    dispatch(fetchImages(username, tripid))
+    if (!this.props.images.length || (
+          this.props.images[0].username != username
+          && this.props.images[0].tripid == trip_id)) {
+      dispatch(fetchImages(username, tripid))
+    }
   }
 
 	render() {
