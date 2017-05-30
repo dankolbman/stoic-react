@@ -45,9 +45,11 @@ module.exports = {
     },
 		externals: {
 			Config: JSON.stringify(process.env.ENV === 'production' ? {
-			apiUrl: "https://dankolbman.xyz"
+			apiUrl: "https://dankolbman.xyz",
+      url: "https://dankolbman.xyz"
 			} : {
-			apiUrl: "http://localhost:8081/api"
+			apiUrl: "http://localhost:8081/api",
+      url: "http://localhost:8081"
 			})
 		},
     plugins: [

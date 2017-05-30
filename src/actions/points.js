@@ -44,7 +44,7 @@ export function pointsFail() {
 export function fetchPoints(username, trip) {
   return {
     [CALL_API]: {
-      endpoint: `http://localhost:8081/api/geo/points/${username}/${trip}`,
+      endpoint: `${Config.apiUrl}/geo/points/${username}/${trip}`,
       method: 'GET',
       types: [REQUEST_POINTS, 
 			{

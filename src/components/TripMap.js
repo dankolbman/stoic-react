@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Map, TileLayer, GeoJSON } from 'react-leaflet'
+import { Map, TileLayer, GeoJSON, CircleMarker } from 'react-leaflet'
 import { fetchLines } from '../actions/lines'
 import { fetchTrip } from '../actions/trip'
+import { fetchImages } from '../actions/images'
 
 class TripMap extends Component {
   constructor(props) {
@@ -12,8 +13,17 @@ class TripMap extends Component {
 	componentWillMount() {
     const { dispatch, isFetching } = this.props
     const { username, tripid } = this.props
-    dispatch(fetchLines(username, tripid))
-    dispatch(fetchTrip(username, tripid))
+    if (!this.props.lines.length || (
+          this.props.lines.username != username
+          && this.props.lines.tripid == tripid)) {
+      dispatch(fetchLines(username, tripid))
+    }
+    if (!this.props.trip.trip || (
+          this.props.trip.trip.username != username
+          && this.props.trip.trip.id == tripid)) {
+      dispatch(fetchTrip(username, tripid))
+    }
+    dispatch(fetchImages(username, tripid))
   }
 
 	render() {
@@ -26,6 +36,17 @@ class TripMap extends Component {
       <small>Nothing to display yet!</small>
     )
 
+    var markers = [];
+    for (var i = 0; i < this.props.images.length; i++) {
+        if (this.props.images[i].lat) {
+        markers.push(
+            <CircleMarker key={i}
+              center={[this.props.images[i].lat, this.props.images[i].lon]}
+              color={'#FF0000'}
+              radius={2}
+            />)
+        }
+    }
 		return (
       <div>
 				<Map
@@ -41,6 +62,7 @@ class TripMap extends Component {
 					<GeoJSON
 						data={this.props.lines}
 					/>
+          {markers}
 					<TileLayer
 						url="https://api.mapbox.com/styles/v1/mapbox/traffic-day-v2/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGFuazUyOCIsImEiOiJzOVp0TzJnIn0.1c8obLmcPHN4LosoNan8DQ"
 						attribution="<attribution>" />
@@ -55,6 +77,7 @@ TripMap.propTypes = {
 	tripid: PropTypes.string.isRequired,
 	trip: PropTypes.object.isRequired,
 	lines: PropTypes.array.isRequired,
+	images: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired
 }
@@ -63,9 +86,11 @@ function mapStateToProps(state) {
   const isFetching = state.trip.isFetching || state.lines.isFetching
   const trip = isFetching ? {} : state.trip.trip
   const { lines, bbox } = state.lines
+  const { images } = state.images
 
   return {
     lines,
+    images,
     bbox,
     trip,
     isFetching
