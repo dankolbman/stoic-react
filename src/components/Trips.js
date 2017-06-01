@@ -28,7 +28,7 @@ class Trips extends Component {
 
 		return (
       <div className="section is-fluid">
-        <div className="tile is-ancestor">
+        <div className="columns is-multiline">
           {user_trips.map(function(trip, i){
             return <TripSummary {...trip} key={i}/>
           })}

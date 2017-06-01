@@ -11,8 +11,8 @@ class TripSummary extends Component {
 		const { username, id, title, start, finish, description  } = this.props
 		const trip_url = `/user/${username}/trip/${id}`
 		return (
-      <div className="tile is-parent">
-				<div className="card is-info" style={{width: "100%"}}>
+      <div className="column is-4">
+				<div className="card" style={{width: "100%"}}>
 					<header className="card-header">
 						<Link to={trip_url} className="card-header-title">
 							{ title }
@@ -25,7 +25,7 @@ class TripSummary extends Component {
 					</header>
 					<div className="card-image">
 						<figure className="image is-4by3">
-							<img src="http://bulma.io/images/placeholders/1280x960.png" alt="Image"/>
+							<img src="https://placeholdit.imgix.net/~text?txt=512x320&txtsize=72&w=512&h=320" alt="Image"/>
 						</figure>
 					</div>
 					<div className="card-content">
