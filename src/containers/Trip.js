@@ -25,7 +25,7 @@ class Trip extends Component {
     const { username, tripid } = this.props.match.params
 		return (
       <div>
-        <div className='hero is-dark' style={{width: '100%'}}>
+        <div className='hero is-info' style={{width: '100%'}}>
             <div className="container">
               <h1 className="title">{ title }</h1>
               <h2 className="subtitle">{start} to {finish}</h2>
