@@ -7,6 +7,7 @@ import Register from '../containers/Register'
 import Trip from '../containers/Trip'
 import NewTrip from '../containers/NewTrip'
 import Profile from '../containers/Profile'
+import Footer from '../components/Footer'
 
 import '../../node_modules/dropzone/dist/min/dropzone.min.css'
 import '../../node_modules/react-dropzone-component/styles/filepicker.css'
@@ -33,6 +34,7 @@ class App extends Component {
           <Route exact path="/user/:id" component={Profile}/>
           <Route path="/user/:id/new" component={NewTrip}/>
           <Route path="/user/:username/trip/:tripid" component={Trip}/>
+					<Footer />
         </div>
 		)
 	}
