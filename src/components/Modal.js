@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import GooglePicker from 'react-google-picker'
-import UploadForm from '../components/UploadForm'
-import DropZone from '../components/DropZone'
 
-class UploadTab extends Component {
+class Modal extends Component {
   constructor(props) {
     super(props)
   }
@@ -46,7 +42,7 @@ class UploadTab extends Component {
   }
 }
 
-UploadTab.propTypes = {
+Modal.propTypes = {
 	isActive: PropTypes.bool.isRequired,
 	type: PropTypes.string.isRequired
 }
@@ -56,4 +52,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(UploadTab)
+export default Modal

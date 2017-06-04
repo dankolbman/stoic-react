@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Map, TileLayer, GeoJSON, CircleMarker } from 'react-leaflet'
+import { Map, TileLayer, ZoomControl, GeoJSON, CircleMarker } from 'react-leaflet'
 import { fetchLines } from '../actions/lines'
 import { fetchTrip } from '../actions/trip'
 import { fetchImages } from '../actions/images'
@@ -48,13 +48,13 @@ class TripMap extends Component {
         }
     }
 		return (
-      <div>
+      <div style={{color: "#222"}}>
 				<Map
-					style={{height: "300px", width: "100%", cursor: "default"}}
+					style={{height: "350px", width: "100%", cursor: "default"}}
           bounds={this.props.bbox}
 					dragging={true}
 					boxZoom={false}
-					zoomControl={true}
+					zoomControl={false}
 					scrollWheelZoom={false}
 					touchZoom={false}
 					keyboard={false}
@@ -66,6 +66,9 @@ class TripMap extends Component {
 					<TileLayer
 						url="https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGFuazUyOCIsImEiOiJzOVp0TzJnIn0.1c8obLmcPHN4LosoNan8DQ"
 						attribution="<attribution>" />
+          <ZoomControl
+            position={'bottomleft'}
+          />
 				</Map>
       </div>
 		)

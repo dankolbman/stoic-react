@@ -31,7 +31,7 @@ export function newTripSuccess(trip) {
 export function postNewTrip(username, trip) {
   return {
     [CALL_API]: {
-      endpoint: `${Config.apiUrl}trips/trips/${username}`,
+      endpoint: `${Config.apiUrl}/trips/trips/${username}`,
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(trip),

@@ -1,5 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import UploadTab  from '../components/UploadTab'
+import Rodal from 'rodal'
+
+import 'rodal/lib/rodal.css'
 
 class NewContentNav extends Component {
   constructor(props) {

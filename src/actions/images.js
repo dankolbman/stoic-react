@@ -48,7 +48,7 @@ export function imagesFail() {
 export function fetchImages(username, trip) {
   return {
     [CALL_API]: {
-      endpoint: `${Config.apiUrl}/images/image/${username}/${trip}?size=100`,
+      endpoint: `${Config.apiUrl}/images/image/${username}/${trip}?size=10`,
       method: 'GET',
       types: [REQUEST_IMAGES, 
 			{
