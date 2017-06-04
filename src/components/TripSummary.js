@@ -98,7 +98,6 @@ class TripSummary extends Component {
     const s = this
     axios.get(url)
      .then(function (response) {
-       console.log(response);
        s.setState({coverImg: response.data.images[0].paths,
                    isFetching: false})
      })
