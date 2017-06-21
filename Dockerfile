@@ -19,7 +19,10 @@ WORKDIR /app
 COPY . /app/
 RUN cp -a /tmp/node_modules /app/
 RUN npm run build
-RUN rm -r /usr/share/nginx/html && mv /app/public/ /usr/share/nginx/html/
+RUN \
+    rm -r /usr/share/nginx/html && \
+    mv /app/static /app/public && \
+    mv /app/public/ /usr/share/nginx/html/
 
 # Define working directory.
 WORKDIR /etc/nginx
