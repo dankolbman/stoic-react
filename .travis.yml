@@ -1,0 +1,12 @@
+services:
+  - docker
+before_install:
+  - docker build -t kolbman.xyz:3333/ui .;
+  - docker run -d -p 80:8089 kolbman.xyz:3333/ui /bin/bash -c "nginx -g 'daemon off;'"
+script: 
+  - curl localhost:80
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" https://kolbman.xyz:3333;
+    docker push kolbman.xyz:3333/ui;
+    fi
