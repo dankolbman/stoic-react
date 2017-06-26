@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import UploadForm from '../components/UploadForm'
 import DropzoneComponent from 'react-dropzone-component';
 
+var Config = require('Config')
+
 class DropZone extends Component {
   constructor(props) {
     super(props)
@@ -15,11 +17,11 @@ class DropZone extends Component {
     var filetypes = []
     switch(type) {
       case 'gps':
-        url = `http://localhost:8081/api/geo/points/${username}/${tripid}/csv`
+        url = `${Config.apiUrl}/geo/points/${username}/${tripid}/csv`
         filetypes = ['.csv']
         break
       case 'photo':
-        url = `http://localhost:8081/api/images/image/${username}/${tripid}`
+        url = `${Config.apiUrl}/images/image/${username}/${tripid}`
         filetypes  = ['.jpg', '.png', '.gif']
         break
     }
