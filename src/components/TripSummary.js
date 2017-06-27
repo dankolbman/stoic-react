@@ -18,79 +18,79 @@ class TripSummary extends Component {
 
 	render() {
 
-		const { username, id, title, start, finish, description  } = this.props
+    const { username, id, title, start, finish, description  } = this.props
     const { isFetching, coverImg } = this.state
-		const trip_url = `/user/${username}/trip/${id}`
-    const imgUrl = `${Config.url}${coverImg['180h']}`
+    const trip_url = `/user/${username}/trip/${id}`
+    const imgUrl = `${Config.url}${coverImg['256h']}`
 
     if (isFetching) return (
       <div className="column is-4">
-				<div className="card" style={{width: "100%"}}>
-					<header className="card-header">
-						<Link to={trip_url} className="card-header-title">
-							{ title }
-						</Link>
-						<a className="card-header-icon">
-							<span className="icon">
-								<i className="fa fa-pencil"></i>
-							</span>
-						</a>
-					</header>
-					<div className="notification has-text-centered hero-body is-primary" style={{height: '180px'}}>
-                <span className="icon is-large">
-                  <i className="fa fa-picture-o fa-spin"></i>
-                </span>
-					</div>
-					<div className="card-content">
-						<div className="media">
-							<div className="media-content">
-								<p className="subtitle is-6">{ start} to { finish }</p>
-							</div>
-						</div>
+        <div className="card" style={{width: "100%"}}>
+          <header className="card-header">
+            <Link to={trip_url} className="card-header-title">
+              { title }
+            </Link>
+            <a className="card-header-icon">
+              <span className="icon">
+                <i className="fa fa-pencil"></i>
+              </span>
+            </a>
+          </header>
+          <div className="notification has-text-centered hero-body is-primary" style={{height: '180px'}}>
+            <span className="icon is-large">
+              <i className="fa fa-picture-o fa-spin"></i>
+            </span>
+          </div>
+          <div className="card-content">
+            <div className="media">
+              <div className="media-content">
+                <p className="subtitle is-6">{ start } to { finish }</p>
+              </div>
+            </div>
 
-						<div className="content">
-							{ description }
-							<br/>
-							<small>11:09 PM - 1 Jan 2016</small>
-						</div>
-					</div>
-				</div>
+            <div className="content">
+              { description }
+              <br/>
+              <small>11:09 PM - 1 Jan 2016</small>
+            </div>
+          </div>
+        </div>
       </div>
     )
-		return (
+    return (
       <div className="column is-4">
-				<div className="card" style={{width: "100%"}}>
-					<header className="card-header">
-						<Link to={trip_url} className="card-header-title">
-							{ title }
-						</Link>
-						<a className="card-header-icon">
-							<span className="icon">
-								<i className="fa fa-pencil"></i>
-							</span>
-						</a>
-					</header>
-					<Link to={trip_url} className="card-image">
-						<figure className="image is-16by9">
-							<img src={imgUrl} alt="Image"/>
-						</figure>
-					</Link>
-					<div className="card-content">
-						<div className="media">
-							<div className="media-content">
-								<p className="subtitle is-6">{start} to {finish}</p>
-							</div>
-						</div>
+        <div className="card" style={{width: "100%"}}>
+          <header className="card-header">
+            <Link to={trip_url} className="card-header-title">
+                { title }
+            </Link>
+            <a className="card-header-icon">
+              <span className="icon">
+                <i className="fa fa-pencil"></i>
+              </span>
+            </a>
+          </header>
+          <Link to={trip_url} className="card-image">
+            <figure className="image is-16by9">
+                <img src={imgUrl} alt="Image"/>
+            </figure>
+          </Link>
+          <div className="card-content">
+            <div className="media">
+              <div className="media-content">
+                <p className="subtitle is-6">{start} to {finish}</p>
+              </div>
+            </div>
 
-						<div className="content">
-							{ description }
-							<br/>
-							<small>11:09 PM - 1 Jan 2016</small>
-						</div>
-					</div>
-				</div>
+            <div className="content">
+              { description }
+              <br/>
+              <small>11:09 PM - 1 Jan 2016</small>
+            </div>
+          </div>
+        </div>
       </div>
-		)
+	)
 	}
 
   get_img(username, tripid) {
